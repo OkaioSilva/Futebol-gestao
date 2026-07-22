@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Paleta: "gramado + súmula + placar de estádio".
+  Verde-grama como cor de marca (não o emerald genérico de dashboard), âmbar como o tom
+  clássico de placar luminoso de estádio para o número de destaque do caixa.
+*/
+:root {
+  --color-bg: #f4f6f2;
+  --color-surface: #ffffff;
+  --color-surface-2: #e9eee4;
+  --color-border: #d8e0d2;
+  --color-fg: #10231a;
+  --color-muted: #5e7161;
+  --color-brand: #1f7a4d;
+  --color-brand-fg: #f4f6f2;
+  --color-accent: #b9740c;
+  --color-accent-fg: #fffaf0;
+}
+
+.dark {
+  --color-bg: #0a140f;
+  --color-surface: #10201a;
+  --color-surface-2: #16281f;
+  --color-border: #1f3a2c;
+  --color-fg: #eaf3ea;
+  --color-muted: #8faa95;
+  --color-brand: #4cc583;
+  --color-brand-fg: #06150d;
+  --color-accent: #f2b94d;
+  --color-accent-fg: #241705;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+::selection {
+  background-color: var(--color-brand);
+  color: var(--color-brand-fg);
+}
