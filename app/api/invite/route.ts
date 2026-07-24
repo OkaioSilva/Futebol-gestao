@@ -81,7 +81,7 @@ export async function POST(request: Request) {
   const redirectHost = process.env.NEXT_PUBLIC_SITE_URL ?? new URL(request.url).origin
   const redirectTo = `${redirectHost.replace(/\/$/, '')}/auth/callback`
   console.log('invite redirectTo', redirectTo)
-  const { data: inviteData, error: inviteError } = await admin.auth.admin.inviteUserByEmail(email, { redirectTo })
+  const { data: inviteData, error: inviteError } = await admin.auth.admin.inviteUserByEmail(normalizedEmail, { redirectTo })
   console.log('invite result', { inviteData, inviteError, email, redirectTo })
 
   if (inviteError) {
