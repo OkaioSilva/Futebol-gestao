@@ -82,10 +82,12 @@ export async function POST(request: Request) {
   const redirectTo = `${redirectHost.replace(/\/$/, '')}/auth/callback`
   console.log('invite redirectTo', redirectTo)
   const { data: inviteData, error: inviteError } = await admin.auth.admin.inviteUserByEmail(email, { redirectTo })
-  console.log('invite result', { inviteData, inviteError })
+  console.log('invite result', { inviteData, inviteError, email, redirectTo })
 
   if (inviteError) {
-    return NextResponse.json({ error: mapInviteErrorMessage(inviteError.message) }, { status: 400 })
+    const mappedError = mapInviteErrorMessage(inviteError.message)
+    console.error('invite error details:', { message: inviteError.message, mappedError, email, redirectTo })
+    return NextResponse.json({ error: mappedError }, { status: 400 })
   }
 
   await supabase.from('admin_invites').insert({ email: normalizedEmail, invited_by: profile.id })
